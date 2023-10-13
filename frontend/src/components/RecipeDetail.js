@@ -1,19 +1,14 @@
 import React from "react";
 
-function RecipeDetail({ match }) {
-  // Fetch recipe details using match.params.id or accept as a prop
-
-  const handleSave = () => {
-    // POST request to your backend to save this recipe
-  };
-
+const RecipeDetail = ({ recipe }) => {
   return (
     <div>
-      <h1>Recipe Detail for {match.params.id}</h1>
-      {/* Render other details here */}
-      <button onClick={handleSave}>Save</button>
+      <h1>{recipe.title}</h1>
+      <p>{recipe.description}</p>
+      <p>Ingredients: {recipe.ingredients.join(", ")}</p>
+      <p>Steps: {recipe.steps}</p>
     </div>
   );
-}
+};
 
 export default RecipeDetail;

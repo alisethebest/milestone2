@@ -1,30 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 
-function UserProfile() {
-  const [savedRecipes, setSavedRecipes] = useState([]);
-
-  useEffect(() => {
-    // Fetch saved recipes from the backend
-    // setSavedRecipes(response.data)
-  }, []);
-
-  const handleDelete = (recipeId) => {
-    // Delete request to your backend
-  };
-
+const UserProfile = ({ savedRecipes }) => {
   return (
     <div>
-      <h1>User Profile</h1>
-      <ul>
-        {savedRecipes.map((recipe) => (
-          <li key={recipe.id}>
-            {recipe.name}{" "}
-            <button onClick={() => handleDelete(recipe.id)}>Delete</button>
-          </li>
-        ))}
-      </ul>
+      <h1>Your saved recipes</h1>
+      {savedRecipes.map((recipe, index) => (
+        <div key={index}>
+          <h3>{recipe.title}</h3>
+          <button>Edit</button>
+          <button>Delete</button>
+        </div>
+      ))}
     </div>
   );
-}
+};
 
 export default UserProfile;

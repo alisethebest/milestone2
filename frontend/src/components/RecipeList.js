@@ -1,26 +1,34 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-function RecipeList() {
+const RecipeList = ({ searchQuery }) => {
   const [recipes, setRecipes] = useState([]);
 
   useEffect(() => {
-    // Fetch recipes from an API
-    axios.get("API_URL_HERE").then((response) => {
-      setRecipes(response.data);
-    });
-  }, []);
+    const fetchRecipes = async () => {
+      try {
+        const response = await axios.get(
+          `http://localhost:3001/api/recipes?query=${searchQuery}`
+        );
+        setRecipes(response.data);
+      } catch (error) {
+        console.error("There was an error fetching the data", error);
+      }
+    };
+
+    fetchRecipes();
+  }, [searchQuery]);
 
   return (
     <div>
-      <h1>Recipe List</h1>
-      <ul>
-        {recipes.map((recipe) => (
-          <li key={recipe.id}>{recipe.name}</li>
-        ))}
-      </ul>
+      {recipes.map((recipe, index) => (
+        <div key={index}>
+          <h3>{recipe.title}</h3>
+          <p>{recipe.description}</p>
+        </div>
+      ))}
     </div>
   );
-}
+};
 
 export default RecipeList;
