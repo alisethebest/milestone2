@@ -34,8 +34,12 @@ function App() {
           <Route path="/profile">
             <UserProfile />
           </Route>
-          <Route path="/">
+          <Route path="/" exact>
             <RecipeList searchQuery={searchQuery} />
+          </Route>
+          {/* Fallback for undefined routes */}
+          <Route>
+            <div>Page Not Found</div>
           </Route>
         </Switch>
       </div>

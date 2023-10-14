@@ -10,7 +10,7 @@ const pool = new Pool({
   user: "alisecervantes",
   host: "localhost",
   database: "recipes",
-  password: "YourPasswordHere",
+  password: "P0wern3t!",
   port: 5432,
 });
 
@@ -26,6 +26,12 @@ app.use((req, res, next) => {
 
 app.use(cors());
 app.use(express.json());
+
+// Default route
+app.get("/", (req, res) => {
+  res.send("Hello, world!");
+});
+
 app.use("/api", routes); // Make sure this line matches your routes file
 
 app.listen(port, () => {
